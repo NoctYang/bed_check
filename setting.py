@@ -153,10 +153,10 @@ SPIDER_MAX_RETRY_TIMES = 3  # 每个请求最大重试次数
 # EMAIL_PASSWORD = ""  # 授权码
 # EMAIL_RECEIVER = ""  # 收件人 支持列表，可指定多个
 # EMAIL_SMTPSERVER = "smtp.163.com"  # 邮件服务器 默认为163邮箱
-# # 企业微信报警
-# WECHAT_WARNING_URL = ""  # 企业微信机器人api
-# WECHAT_WARNING_PHONE = ""  # 报警人 将会在群内@此人, 支持列表，可指定多人
-# WECHAT_WARNING_ALL = False  # 是否提示所有人， 默认为False
+# 企业微信报警
+WECHAT_WARNING_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=9d54da98-7dc2-47de-9288-0c401258c853"  # 企业微信机器人api
+WECHAT_WARNING_PHONE = "13005149668"  # 报警人 将会在群内@此人, 支持列表，可指定多人
+WECHAT_WARNING_ALL = False  # 是否提示所有人， 默认为False
 # # 时间间隔
 # WARNING_INTERVAL = 3600  # 相同报警的报警时间间隔，防止刷屏; 0表示不去重
 WARNING_LEVEL = "INFO"  # 报警级别， DEBUG / INFO / ERROR
