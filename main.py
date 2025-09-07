@@ -4,6 +4,7 @@ import base64
 import ddddocr
 import feapder
 import argparse
+from tools import send_msg
 
 from env import *
 from feapder.utils.log import log
@@ -30,8 +31,11 @@ class CQ(feapder.AirSpider):
         login_url = "https://ids.gzist.edu.cn/lyuapServer/v1/tickets"
         uid = response.json["uid"]
         code_base64_str = response.json["content"].split(",")[-1]
-        code, code_result = self.code_ocr(code_base64_str)
-        log.info(f"验证码: {code};答案: {code_result}")
+        if code_base64_str == '-1':
+            code_result = None
+        else:
+            code, code_result = self.code_ocr(code_base64_str)
+            log.info(f"验证码: {code};答案: {code_result}")
         post_data = {
             "username": USERNAME,
             "password": self.encrypt_password(PASSWORD),
@@ -116,7 +120,7 @@ class CQ(feapder.AirSpider):
     @staticmethod
     def send_msg(msg, level="DEBUG", message_prefix=""):
         msg = f"{USERNAME}\n{msg}"
-        tools.send_msg(msg, level=level, message_prefix=message_prefix)
+        send_msg(msg, level=level, message_prefix=message_prefix)
 
     # 识别验证码
     def code_ocr(self, code_base64_str):
